@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.config.productionTip = false;
 Vue.use(VueResource);
 Vue.use(ElementUI);
+// Vue.http.options.emulateJSON = false
 
 new Vue({
 	router,

@@ -16,7 +16,13 @@
 		},
 		methods: {
 			getASkyBook() {
-				this.$http.post('http://localhost:1656/skybook/getASkyBookRandom')
+				var userBean = new FormData();
+				userBean.append("userip", "192.168.1.1");
+				var data = new Object();
+				data.userip = "1111111111";
+				this.$http.post('http://localhost:1656/skybook/getASkyBookRandom', data, {
+						emulateJSON: false
+					})
 					.then(res => {
 						// console.log(res.body);
 						this.title = res.body.title;
