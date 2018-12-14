@@ -1,11 +1,20 @@
 <template>
 	<div>
-		<div>{{title}}</div>
+		<PageHeader />
+		<div class="sentence">
+			<label @click="refresh"> "{{title}}" </label>
+		</div>
 	</div>
 </template>
 
 <script>
+	
+	import PageHeader from '../components/PageHeader.vue';
+	
 	export default {
+		components: {
+			PageHeader
+		},
 		data() {
 			return {
 				title: ""
@@ -15,23 +24,30 @@
 			this.getASkyBook();
 		},
 		methods: {
-			getASkyBook() {
-				var userBean = new FormData();
-				userBean.append("userip", "192.168.1.1");
-				var data = new Object();
-				data.userip = "1111111111";
-				this.$http.post('http://localhost:1656/skybook/getASkyBookRandom', data, {
+			getASkyBook(isRefresh) {
+				var userBean = {
+					'userIp': "11111",
+					'refresh': isRefresh
+				}
+				this.$http.post('http://localhost:1656/skybook/getASkyBookRandom', userBean, {
 						emulateJSON: false
 					})
 					.then(res => {
-						// console.log(res.body);
 						this.title = res.body.title;
 					})
+			},
+			refresh() {
+				this.getASkyBook(true);
 			}
 		}
 	}
 </script>
 
 <style>
-
+	.sentence {
+		margin: 150px 30px;
+		text-align: center;
+		font-size: 3em;
+		color: #333333;
+	}
 </style>
