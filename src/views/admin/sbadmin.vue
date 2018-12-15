@@ -1,19 +1,14 @@
 <template>
-	<div>
-		sbadmin
-	</div>
+  <div>sbadmin</div>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				
-			};
-		}
-	}
+export default {
+  data() {
+    return {};
+  }
+};
 </script>
 
 <style>
-
 </style>
