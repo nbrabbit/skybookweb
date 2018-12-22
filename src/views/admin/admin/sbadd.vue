@@ -1,6 +1,6 @@
 <template>
 <div class="pageContainer">
-    <el-form ref="form" :model="form" label-width="80px">
+    <el-form ref="form" :model="newskybook" label-width="80px">
         <el-form-item label="title">
             <el-input v-model="form.title"></el-input>
         </el-form-item>
@@ -25,7 +25,7 @@
 export default {
     data() {
         return {
-            form: {
+            newskybook: {
                 title: "",
                 text: "",
                 source: "",
@@ -33,16 +33,22 @@ export default {
             }
         };
     },
-    methods:{
-        onsubmit(){
-            console.log(this.form)
+    methods: {
+        onsubmit() {
+            console.log(this.newskybook);
+            this.$http.post("http://localhost:1656/skybook/addSkyBook", newskybook, {
+                    emulateJSON: false
+                })
+                .then(res => {
+                    console.log(res);
+                })
         }
     }
 };
 </script>
+
 <style>
-.pageContainer{
+.pageContainer {
     height: 600px;
 }
 </style>
-
