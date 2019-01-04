@@ -17,3 +17,12 @@ new Vue({
 	store,
 	render: h => h(App)
 }).$mount('#app')
+
+//路由守卫
+router.beforeEach((to, from, next) => {
+	if (localStorage.getItem('loginUser') != null) {
+		next();
+	} else {
+		next("/login");
+	}
+})
