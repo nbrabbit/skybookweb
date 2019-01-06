@@ -20,9 +20,23 @@ new Vue({
 
 //路由守卫
 router.beforeEach((to, from, next) => {
-	if (localStorage.getItem('loginUser') != null) {
+	// 	console.log("拦截");
+	// 	if (localStorage.getItem('loginUser') != null) {
+	// 		next("/login");
+	// 	} else {
+	// 		next("/login");
+	// 	}
+	
+	if(to.path.startsWith("/login")){
 		next();
-	} else {
-		next("/login");
+	}else{
+		let user = localStorage.getItem('loginUser');
+		if(!user){
+			next({
+				path:'/login'
+			})
+		}else{
+			next();
+		}
 	}
 })

@@ -46,7 +46,7 @@ export default {
                 emulateJSON: false
             })
             .then(res => {
-                console.log(res.body.result);
+                // console.log(res.body.result);
                 this.tableData = res.body.result;
             })
 

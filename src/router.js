@@ -11,35 +11,33 @@ import SBList from "./views/admin/admin/sblist.vue";
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: "/",
-      name: "index",
-      component: Index
-    },
-    {
-      path: "/login",
-      name: "login",
-      component: Login
-    },
-    {
-      path: "/sbadmin",
-      name: "sbadmin",
-      component: SBAdmin,
-      children: [
-        {
-          path: "sbadd",
-          name: "sbadd",
-          component: SBAdd
-        },
-        {
-          path: "sblist",
-          name: "sblist",
-          component: SBList
-        }
-      ]
-    }
-  ]
+	mode: "history",
+	base: process.env.BASE_URL,
+	routes: [{
+			path: "/",
+			name: "index",
+			component: Index
+		},
+		{
+			path: "/login",
+			name: "login",
+			component: Login
+		},
+		{
+			path: "/sbadmin",
+			name: "sbadmin",
+			component: SBAdmin,
+			children: [{
+					path: "sbadd",
+					name: "sbadd",
+					component: SBAdd
+				},
+				{
+					path: "sblist",
+					name: "sblist",
+					component: SBList
+				}
+			]
+		}
+	]
 });

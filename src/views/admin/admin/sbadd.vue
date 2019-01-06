@@ -40,7 +40,8 @@ export default {
                     emulateJSON: false
                 })
                 .then(res => {
-                    console.log(res);
+                    // console.log(res);
+					res.data;
                 })
         }
     }
