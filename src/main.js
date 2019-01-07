@@ -12,31 +12,29 @@ Vue.use(VueResource);
 Vue.use(ElementUI);
 // Vue.http.options.emulateJSON = false
 
+/**
+ * 路由守卫，必须放在new Vue前
+ */
+router.beforeEach((to, from, next) => {
+	//
+	if (localStorage.getItem('loginUser') != null) {
+		//如果已经登录，直接跳转到目标页面
+
+		next();
+	} else {
+		//如果未登录，跳转至登录页面
+
+		if (to.path === '/login') {
+			next();
+		} else {
+			next('/login');
+		}
+	}
+
+})
+
 new Vue({
 	router,
 	store,
 	render: h => h(App)
 }).$mount('#app')
-
-//路由守卫
-router.beforeEach((to, from, next) => {
-	// 	console.log("拦截");
-	// 	if (localStorage.getItem('loginUser') != null) {
-	// 		next("/login");
-	// 	} else {
-	// 		next("/login");
-	// 	}
-	
-	if(to.path.startsWith("/login")){
-		next();
-	}else{
-		let user = localStorage.getItem('loginUser');
-		if(!user){
-			next({
-				path:'/login'
-			})
-		}else{
-			next();
-		}
-	}
-})
